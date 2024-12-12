@@ -1,6 +1,6 @@
 [gd_scene load_steps=25 format=3 uid="uid://5yv1b2hbcaol"]
 
-[ext_resource type="Script" path="res://hero.gd" id="1_4r8be"]
+[ext_resource type="Script" path="res://scripts/hero.gd" id="1_4r8be"]
 [ext_resource type="Texture2D" uid="uid://cipknrohlunar" path="res://assets/Heroes/Knight/Death/Death-Sheet.png" id="1_j6aby"]
 [ext_resource type="Texture2D" uid="uid://bexex86ssiln0" path="res://assets/Heroes/Knight/Idle/Idle-Sheet.png" id="2_cyljw"]
 [ext_resource type="Texture2D" uid="uid://bfxpkk48kl7mm" path="res://assets/Heroes/Knight/Run/Run-Sheet.png" id="3_686cf"]
