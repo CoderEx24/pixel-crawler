@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://5yv1b2hbcaol"]
+[gd_scene load_steps=25 format=3 uid="uid://5yv1b2hbcaol"]
 
 [ext_resource type="Script" path="res://hero.gd" id="1_4r8be"]
 [ext_resource type="Texture2D" uid="uid://cipknrohlunar" path="res://assets/Heroes/Knight/Death/Death-Sheet.png" id="1_j6aby"]
@@ -139,11 +139,14 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys0jb"]
+atlas = ExtResource("5_m4xnt")
+region = Rect2(0, 0, 16, 50)
+
 [node name="Knight" type="CharacterBody2D"]
 script = ExtResource("1_4r8be")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-5.5, 2.5)
 shape = SubResource("RectangleShape2D_wnm3d")
 metadata/_edit_lock_ = true
 
@@ -153,12 +156,13 @@ metadata/_edit_lock_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_st1cj")
-animation = &"death"
-frame_progress = 0.829621
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.727207
 metadata/_edit_lock_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, -1)
-scale = Vector2(34, 17)
-texture = ExtResource("5_m4xnt")
-region_enabled = true
+[node name="Weapon" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(13.125, -13.4453)
+scale = Vector2(1.10937, 0.554687)
+texture = SubResource("AtlasTexture_ys0jb")
