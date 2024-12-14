@@ -1,26 +1,46 @@
 extends CharacterBody2D
 
-@export var SPEED: float = 300.0
-var flip = false
+signal entered_exit
 
-func _entered_exit(body: Node2D):
-	if body.name != 'Hero':
-		return
-	get_tree().quit()
+@export var SPEED: float = 300.0
+var direction: Vector2i = Vector2i.ZERO
+var attack
+
+func _input(evt: InputEvent):
+	
+	if evt is InputEventKey:
+		if evt.is_action_pressed('ui_left'):
+			direction.x = -1
+		elif evt.is_action_pressed('ui_right'):
+			direction.x = 1
+		elif evt.is_action_released('ui_right') or evt.is_action_released('ui_left'):
+			direction.x = 0
+		
+		if evt.is_action_pressed('ui_up'):
+			direction.y = -1
+		elif evt.is_action_pressed('ui_down'):
+			direction.y = 1
+		elif evt.is_action_released('ui_down') or evt.is_action_released('ui_up'):
+			direction.y = 0
+		
 
 func _physics_process(delta: float) -> void:
-	
-	velocity = Vector2(0, 0)
-	
-	if Input.is_action_pressed('ui_left'):
-		velocity.x = -SPEED
-	if Input.is_action_pressed('ui_right'):
-		velocity.x = SPEED
-	if Input.is_action_pressed('ui_up'):
-		velocity.y = -SPEED
-	if Input.is_action_pressed('ui_down'):
-		velocity.y = SPEED
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collision_position = collision.get_position()
+		var collider = collision.get_collider()
 		
+		if collider is not TileMapLayer:
+			print('not a tile')
+			continue
+		var tilemap = collider as TileMapLayer
+		var tilecoords = tilemap.local_to_map(collision_position)
+		var tile = tilemap.get_cell_tile_data(tilecoords)
+		var kind = tile.get_custom_data_by_layer_id(0)
+		if kind == 'exit':
+			emit_signal('entered_exit')
+			
+	velocity = direction * SPEED
 	move_and_slide()
 
 func _process(delta):
@@ -28,10 +48,7 @@ func _process(delta):
 	if velocity.length() > 0:
 		animation = 'run'
 	
-	if Input.is_action_pressed('ui_left'):
-		flip = true
-	if Input.is_action_pressed('ui_right'):
-		flip = false
+	if Input.is_key_pressed(KEY_K):
+		$WeaponSprite.attack($WeaponSprite.MeleeAttackType.WIDE)
 	
-	$HeroSprite.flip_h = flip
 	$HeroSprite.play(animation)
