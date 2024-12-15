@@ -211,6 +211,7 @@ texture = ExtResource("1_vexs5")
 11:8/0 = 0
 14:8/0 = 0
 0:9/0 = 0
+0:9/0/custom_data_0 = &"entrance"
 1:9/0 = 0
 2:9/0 = 0
 3:9/0 = 0
