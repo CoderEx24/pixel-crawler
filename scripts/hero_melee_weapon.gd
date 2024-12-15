@@ -24,5 +24,4 @@ func attack(kind: MeleeAttackType) -> void:
 	$AnimationPlayer.current_animation = 'attack'
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	print('finished animation ', anim_name)
 	$AnimationPlayer.current_animation = 'idle'

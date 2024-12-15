@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bexex86ssiln0" path="res://assets/Heroes/Knight/Idle/Idle-Sheet.png" id="2_cyljw"]
 [ext_resource type="Texture2D" uid="uid://bfxpkk48kl7mm" path="res://assets/Heroes/Knight/Run/Run-Sheet.png" id="3_686cf"]
 [ext_resource type="Texture2D" uid="uid://bw5dxy7mu2eas" path="res://assets/Weapons/Wood/Wood.png" id="5_m4xnt"]
-[ext_resource type="Script" path="res://scenes/core/hero_melee_weapon.gd" id="6_pmnvw"]
+[ext_resource type="Script" path="res://scripts/hero_melee_weapon.gd" id="6_xb3da"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wnm3d"]
 size = Vector2(29, 31)
@@ -264,7 +264,7 @@ position = Vector2(12, 6)
 scale = Vector2(0.75, 0.75)
 texture = SubResource("AtlasTexture_ys0jb")
 offset = Vector2(0.778511, -24.0714)
-script = ExtResource("6_pmnvw")
+script = ExtResource("6_xb3da")
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="WeaponSprite"]
 collision_layer = 2
