@@ -42,6 +42,10 @@ func _physics_process(delta: float) -> void:
 		var tilemap = collider as TileMapLayer
 		var tilecoords = tilemap.local_to_map(collision_position)
 		var tile = tilemap.get_cell_tile_data(tilecoords)
+		if not tile:
+			print('not a tile: ', collision_position, ' -> ', tilecoords)
+			continue
+		print('a tile: ', collision_position, ' -> ', tilecoords)
 		var kind = tile.get_custom_data_by_layer_id(0)
 		if kind and kind == 'exit':
 			emit_signal('entered_exit')
@@ -55,6 +59,6 @@ func _process(delta):
 		animation = 'run'
 	
 	if Input.is_key_pressed(KEY_K):
-		$WeaponSprite.attack($WeaponSprite.MeleeAttackType.WIDE)
+		$Weapon.attack($Weapon.MeleeAttackType.WIDE)
 	
 	$HeroSprite.play(animation)
