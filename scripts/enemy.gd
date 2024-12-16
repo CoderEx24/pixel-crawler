@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var SPEED = 30
 
-var player
+@onready var player = get_parent().get_node('Hero')
 
 var randomnum
 
@@ -18,6 +18,7 @@ func _ready():
 	var rng = RandomNumberGenerator.new()
 	rng.randomize()
 	randomnum = rng.randf()
+	player = get_parent().get_node('Hero')
 
 func _physics_process(delta):
 	match state:
