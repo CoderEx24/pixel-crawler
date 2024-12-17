@@ -35,9 +35,8 @@ func _physics_process(_delta: float) -> void:
 
 			var kind = tile.get_custom_data_by_layer_id(0)
 		elif collider is CharacterBody2D:
-			var character = collider as CharacterBody2D
-			character.velocity += Vector2(50, 0)
-			
+			if collider is Enemy:
+				collider.deal_damage(10)
 	move_and_slide()
 
 func _process(delta: float) -> void:
