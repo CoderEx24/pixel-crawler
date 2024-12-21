@@ -19,7 +19,7 @@ var _KIND = MeleeAttackType.BASE
 
 func _ready() -> void:
 	$AnimationPlayer.current_animation = 'idle'
-	$CollisionPolygon2D.disabled = true
+	$CollisionArea.disabled = true
 
 func _physics_process(_delta: float) -> void:
 	for i in get_slide_collision_count():
@@ -54,4 +54,4 @@ func attack(kind: MeleeAttackType) -> void:
 
 func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
 	$AnimationPlayer.play('idle')
-	$CollisionPolygon2D.disabled = true
+	$CollisionArea.disabled = true
