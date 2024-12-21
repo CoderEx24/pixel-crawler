@@ -8,13 +8,14 @@ enum MeleeWeaponState {
 }
 
 enum MeleeAttackType {
-	WIDE,
-	STAB
+	BASE,
+	STRONG
 }
 
 const TYPE = 'melee'
+@export var BASE_DAMAGE = 12
 var _STATE = MeleeWeaponState.IDLE
-var _KIND = MeleeAttackType.WIDE
+var _KIND = MeleeAttackType.BASE
 
 func _ready() -> void:
 	$AnimationPlayer.current_animation = 'idle'
@@ -36,16 +37,21 @@ func _physics_process(_delta: float) -> void:
 			var kind = tile.get_custom_data_by_layer_id(0)
 		elif collider is CharacterBody2D:
 			if collider is Enemy:
-				collider.deal_damage(10)
+				var damage_multiplier = 1.2 if _KIND == MeleeAttackType.STRONG else 1.0
+				collider.deal_damage(BASE_DAMAGE * damage_multiplier)
 	move_and_slide()
 
 func _process(delta: float) -> void:
 	pass
 	
 func attack(kind: MeleeAttackType) -> void:
-	$AnimationPlayer.current_animation = 'attack'
-	$CollisionPolygon2D.disabled = false
+	_KIND = kind
+	match kind:
+		MeleeAttackType.STRONG:
+			$AnimationPlayer.play('strong')
+		MeleeAttackType.BASE:
+			$AnimationPlayer.play('base')
 
-func _on_animation_player_animation_finished(anim_name: StringName) -> void:
-	$AnimationPlayer.current_animation = 'idle'
+func _on_animation_player_animation_finished(_anim_name: StringName) -> void:
+	$AnimationPlayer.play('idle')
 	$CollisionPolygon2D.disabled = true

@@ -59,6 +59,8 @@ func _process(delta):
 		animation = 'run'
 	
 	if Input.is_key_pressed(KEY_K):
-		$Weapon.attack($Weapon.MeleeAttackType.WIDE)
+		$Weapon.attack($Weapon.MeleeAttackType.BASE)
+	elif Input.is_key_pressed(KEY_J):
+		$Weapon.attack($Weapon.MeleeAttackType.STRONG)
 	
 	$HeroSprite.play(animation)
