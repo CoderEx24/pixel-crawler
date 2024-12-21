@@ -1,11 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://rocymwso8qde"]
+[gd_scene load_steps=9 format=3 uid="uid://jco84sgy17pr"]
 
-[ext_resource type="Script" path="res://scripts/hero_melee_weapon.gd" id="1_guh0w"]
-[ext_resource type="Texture2D" uid="uid://bw5dxy7mu2eas" path="res://assets/Weapons/Wood/Wood.png" id="2_qh0sx"]
+[ext_resource type="Script" path="res://scripts/hero_melee_weapon.gd" id="1_jq2pu"]
+[ext_resource type="Texture2D" uid="uid://bw5dxy7mu2eas" path="res://assets/Weapons/Wood/Wood.png" id="2_s3xj2"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1wekx"]
-radius = 4.66667
-height = 41.3333
+[sub_resource type="AtlasTexture" id="AtlasTexture_qersi"]
+atlas = ExtResource("2_s3xj2")
+region = Rect2(48, 16, 16, 30)
 
 [sub_resource type="Animation" id="Animation_uqwv8"]
 length = 0.001
@@ -44,6 +44,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_hy2i7"]
+resource_name = "base"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(11, 12), Vector2(16, 5), Vector2(11, 5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 2.96706, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CollisionArea:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_63ier"]
@@ -103,46 +143,6 @@ tracks/2/keys = {
 "values": [true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_hy2i7"]
-resource_name = "base"
-length = 0.8
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 2
-tracks/0/loop_wrap = false
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(11, 12), Vector2(16, 5), Vector2(11, 5)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = false
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.6, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.174533, 2.96706, 0.0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CollisionArea:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.5, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [true, false, true]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l2bii"]
 _data = {
 "RESET": SubResource("Animation_uqwv8"),
@@ -151,22 +151,23 @@ _data = {
 "strong": SubResource("Animation_sv3f6")
 }
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ys0jb"]
-atlas = ExtResource("2_qh0sx")
-region = Rect2(0, 0, 16, 50)
-
 [node name="Weapon" type="CharacterBody2D"]
 position = Vector2(12, 6)
-scale = Vector2(0.75, 0.75)
 collision_layer = 2
 collision_mask = 72
 motion_mode = 1
-platform_floor_layers = 4278190080
-script = ExtResource("1_guh0w")
+script = ExtResource("1_jq2pu")
+BASE_DAMAGE = 30
 
-[node name="CollisionArea" type="CollisionShape2D" parent="."]
-position = Vector2(0.666667, -20.6667)
-shape = SubResource("CapsuleShape2D_1wekx")
+[node name="WeaponSprite" type="Sprite2D" parent="."]
+position = Vector2(-2, -23)
+texture = SubResource("AtlasTexture_qersi")
+offset = Vector2(2, 9)
+metadata/_edit_lock_ = true
+
+[node name="CollisionArea" type="CollisionPolygon2D" parent="."]
+position = Vector2(-2, -23)
+polygon = PackedVector2Array(-0.8, -4.2, -4.2, -4.2, -4.2, -3.2, -5.2, -3.2, -5.2, -2.2, -6, -2.2, -6, 4.2, -5.2, 4.2, -5.2, 5.2, -4.2, 5.2, -4.2, 6.2, -0.8, 6.2, -0.8, 5.2, -0.2, 5.2, -0.2, 23.2, 0.8, 23.2, 0.8, 24, 3.2, 24, 3.2, 23.2, 4.2, 23.2, 4.2, 5.2, 4.8, 5.2, 4.8, 6.2, 8.2, 6.2, 8.2, 5.2, 9.2, 5.2, 9.2, 4.2, 10, 4.2, 10, -2.2, 9.2, -2.2, 9.2, -3.2, 8.2, -3.2, 8.2, -4.2, 4.8, -4.2, 4.8, -3.2, 3.2, -3.2, 3.2, -4.2, 0.8, -4.2, 0.8, -3.2, -0.8, -3.2)
 disabled = true
 metadata/_edit_lock_ = true
 
@@ -175,12 +176,3 @@ libraries = {
 "": SubResource("AnimationLibrary_l2bii")
 }
 autoplay = "idle"
-
-[node name="WeaponSprite" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(9.53674e-07, -22.6667)
-texture = SubResource("AtlasTexture_ys0jb")
-offset = Vector2(0.445176, 0.595301)
-metadata/_edit_lock_ = true
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
