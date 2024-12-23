@@ -7,6 +7,7 @@ enum EnemyState {
 	IDLE,
 	WANDER,
 	DEAD,
+	ATTACK,
 }
 
 var player: CharacterBody2D
@@ -14,7 +15,14 @@ var SPEED = 30
 @export var health_points = 100
 @export var v: Vector2
 var state: EnemyState = EnemyState.IDLE
+var state_changed = false
 var target_wander_position: Vector2
+
+func set_state(s: EnemyState):
+	if state == EnemyState.DEAD:
+		return
+	state = s
+	state_changed = true
 
 func set_player(p):
 	player = p
@@ -22,25 +30,62 @@ func set_player(p):
 func deal_damage(damage: int):
 	health_points = max(0, health_points - damage)
 	if health_points == 0:
-		_die()
+		set_state(EnemyState.DEAD)
 		return
 	$CollisionShape2D.disabled = true
 	$Stuned.start()
 
 func _ready():
 	$Sprite2D.play('idle')
+	$Weapon/AnimationPlayer.play('idle')
 	
 func _process(_delta: float) -> void:
-	$HealthPoints.value = health_points
-	$Sprite2D.flip_h = sign(velocity.x) == -1
-
-	if state != EnemyState.DEAD:
-		$Sprite2D.pause()
+	var mirror = sign(velocity.x) == -1
 	
-	if state == EnemyState.CHASE or state == EnemyState.WANDER:
+	$HealthPoints.value = health_points
+	$Sprite2D.flip_h = mirror
+
+	if not state_changed:
+		return
+	
+	state_changed = false
+	
+	if state == EnemyState.CHASE:
+		print('Enemy is Chasing')
 		$Sprite2D.play('run')
+		
+		var idle_animation = 'idle_mirrored' if mirror else 'idle'
+		$Weapon/AnimationPlayer.play(idle_animation)
+		
+	elif state == EnemyState.ATTACK:
+		print('Enemy is Attacking')
+		var attack_animation = 'attack_mirrored' if mirror else 'attack'
+		$Weapon/AnimationPlayer.play(attack_animation)
+		
+	elif state == EnemyState.WANDER:
+		print('Enemy is Wandering')
+		$Sprite2D.play('run')
+		
+		var idle_animation = 'idle_mirrored' if mirror else 'idle'
+		$Weapon/AnimationPlayer.play(idle_animation)
+
 	elif state == EnemyState.IDLE:
+		print('Enemy is Idling')
 		$Sprite2D.play('idle')
+		
+		var idle_animation = 'idle_mirrored' if mirror else 'idle'
+		$Weapon/AnimationPlayer.play(idle_animation)
+		
+	elif state == EnemyState.DEAD:
+		print('Enemy is fucking dead')
+		$CollisionShape2D.disabled = true
+		$VisiblityRegion/CollisionShape2D.disabled = true
+		$AttackRegion/CollisionShape2D.disabled = true
+		$Stuned.stop()
+		$Wander.stop()
+		$Weapon.queue_free()
+		$Sprite2D.play('death')
+		$Weapon/AnimationPlayer.stop()
 
 func _physics_process(delta):
 	match state:
@@ -52,8 +97,8 @@ func _physics_process(delta):
 			velocity += steering
 		EnemyState.WANDER:
 			var displacement_vector = target_wander_position - global_position
-			if displacement_vector.length() < 0.1:
-				state = EnemyState.IDLE
+			if displacement_vector.length() < 1:
+				set_state(EnemyState.IDLE)
 				return
 			
 			var desired_velocity = displacement_vector.normalized() * SPEED
@@ -61,25 +106,17 @@ func _physics_process(delta):
 			velocity += steering
 		EnemyState.DEAD, EnemyState.IDLE:
 			velocity = Vector2.ZERO
-		
+
 	move_and_slide()
 
 	
-func _die():
-	state = EnemyState.DEAD
-	$CollisionShape2D.disabled = true
-	$VisiblityRegion/CollisionShape2D.disabled = true
-	$Stuned.stop()
-	$Wander.stop()
-	$Sprite2D.play('death')
-
 func _on_visiblity_region_body_entered(body: Node2D) -> void:
 	if body.name == 'Hero' and state != EnemyState.DEAD:
-		state = EnemyState.CHASE
+		set_state(EnemyState.CHASE)
 
 func _on_visiblity_region_body_exited(body: Node2D) -> void:
 	if body.name == 'Hero' and state != EnemyState.DEAD:
-		state = EnemyState.IDLE
+		set_state(EnemyState.IDLE)
 
 func _on_stuned_timeout() -> void:
 	$CollisionShape2D.disabled = false
@@ -88,11 +125,18 @@ func _on_stuned_timeout() -> void:
 func _on_wander_timeout() -> void:
 	match state:
 		EnemyState.WANDER:
-			state = EnemyState.IDLE
+			set_state(EnemyState.IDLE)
 		EnemyState.IDLE:
-			state = EnemyState.WANDER
+			set_state(EnemyState.WANDER)
 			target_wander_position = \
 				global_position + randi_range(0, 100) * Vector2.from_angle(randf_range(0, TAU))
-			print('New Target Pos = ', target_wander_position)
 
 	$Wander.start()
+
+func _on_attack_region_body_entered(body: Node2D) -> void:
+	if body.name == 'Hero':
+		set_state(EnemyState.ATTACK)
+
+func _on_attack_region_body_exited(body: Node2D) -> void:
+	if body.name == 'Hero':
+		set_state(EnemyState.CHASE)
