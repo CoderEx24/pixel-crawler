@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctssotmjor72a"]
+[gd_scene load_steps=5 format=3 uid="uid://cx1la2magk2yy"]
 
-[ext_resource type="Script" path="res://scripts/menu.gd" id="1_1psxw"]
-[ext_resource type="Texture2D" uid="uid://qqhyrfydt520" path="res://assets/back.png" id="1_c0w3g"]
+[ext_resource type="Script" path="res://scripts/levels_selection.gd" id="1_b4nlj"]
+[ext_resource type="Texture2D" uid="uid://qqhyrfydt520" path="res://assets/back.png" id="2_i1bu7"]
 
 [sub_resource type="SystemFont" id="SystemFont_tyadq"]
 font_names = PackedStringArray("Impact")
@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1psxw")
+script = ExtResource("1_b4nlj")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -27,7 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_c0w3g")
+texture = ExtResource("2_i1bu7")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -49,7 +49,6 @@ theme_override_constants/separation = 60
 layout_mode = 2
 
 [node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
-unique_name_in_owner = true
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -77,37 +76,29 @@ layout_mode = 2
 [node name="Seperator3" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Hero_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Level1_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
-text = "Hero"
+text = "Level1"
 
-[node name="Knight_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Level2_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
-text = "Knight"
+text = "Level2"
 
-[node name="Wizzard_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Level3_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
-text = "Wizzard"
+text = "Level3"
 
 [node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Start_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(160, 50)
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = SubResource("SystemFont_x7u3j")
-theme_override_font_sizes/font_size = 30
-text = "Start Game"

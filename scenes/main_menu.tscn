@@ -1,24 +1,22 @@
-[gd_scene load_steps=5 format=3 uid="uid://ctssotmjor72a"]
+[gd_scene load_steps=5 format=3 uid="uid://cp334bjbi8y6k"]
 
-[ext_resource type="Script" path="res://scripts/menu.gd" id="1_1psxw"]
-[ext_resource type="Texture2D" uid="uid://qqhyrfydt520" path="res://assets/back.png" id="1_c0w3g"]
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_hu32a"]
+[ext_resource type="Texture2D" uid="uid://qqhyrfydt520" path="res://assets/back.png" id="2_dlnu6"]
 
 [sub_resource type="SystemFont" id="SystemFont_tyadq"]
 font_names = PackedStringArray("Impact")
-subpixel_positioning = 0
 
 [sub_resource type="SystemFont" id="SystemFont_x7u3j"]
 font_names = PackedStringArray("Impact")
-subpixel_positioning = 0
 
-[node name="Menu" type="Control"]
+[node name="Main_Menu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_1psxw")
+script = ExtResource("1_hu32a")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -27,7 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_c0w3g")
+texture = ExtResource("2_dlnu6")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -74,40 +72,18 @@ alignment = 1
 [node name="Seperator" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Seperator3" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Hero_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = SubResource("SystemFont_x7u3j")
-theme_override_font_sizes/font_size = 30
-text = "Hero"
-
-[node name="Knight_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = SubResource("SystemFont_x7u3j")
-theme_override_font_sizes/font_size = 30
-text = "Knight"
-
-[node name="Wizzard_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = SubResource("SystemFont_x7u3j")
-theme_override_font_sizes/font_size = 30
-text = "Wizzard"
-
-[node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="Start_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(160, 50)
+custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
 text = "Start Game"
+
+[node name="Exit_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = SubResource("SystemFont_x7u3j")
+theme_override_font_sizes/font_size = 30
+text = "Exit"

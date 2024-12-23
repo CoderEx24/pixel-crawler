@@ -3,19 +3,20 @@ extends Control
 # Dictionary to store hero data
 var heroes = {
 	"Hero": {
-		"description": "A balanced hero with average stats.",
+		"description": "Hero",
 	},
 	"Knight": {
-		"description": "A strong and resilient fighter.",
+		"description": "Knight",
 	},
 	"Wizard": {
-		"description": "A master of magic with high damage.",
+		"description": "Wizzard",
 	}
 }
 
 # Variable to track selected hero
 var selected_hero = "Hero"  # Default selection
-
+@onready var start_button = $MarginContainer/HBoxContainer/VBoxContainer/Start_button as Button
+@onready var next_level = preload("res://scenes/Levels_selection.tscn") as PackedScene
 func _ready():
 	# Connect button signals for hero selection
 	$MarginContainer/HBoxContainer/VBoxContainer/Hero_button.connect("pressed", Callable(self, "_on_hero_selected_hero"))
@@ -23,7 +24,7 @@ func _ready():
 	$MarginContainer/HBoxContainer/VBoxContainer/Wizzard_button.connect("pressed", Callable(self, "_on_hero_selected_Wizzard"))
 
 	# Start Game button
-	$MarginContainer/HBoxContainer/VBoxContainer/Start_button.connect("pressed", Callable(self, "_on_start_game_pressed"))
+	start_button.button_down.connect(on_start_pressed1)
 
 	# Update the display for the default hero
 	update_selected_hero_display()
@@ -45,11 +46,10 @@ func _on_hero_selected(hero_name):
 func update_selected_hero_display():
 	# Update the label to show the selected hero and description
 	var hero_data = heroes[selected_hero]
-	%Description.text = "Selected Hero: %s\n%s" % [selected_hero, hero_data["description"]]
+	#%Description.text = "Selected Hero: %s\n%s" % [selected_hero, hero_data["description"]]
 
-func _on_start_game_pressed():
-	# Pass the selected hero to the Globals singleton
-	var selected_hero = "Hero"
+func on_start_pressed1() -> void:
+	get_tree().change_scene_to_packed(next_level)
 
 	# Start the game by changing the scene
 	# get_tree().change_scene("res://menu.gd")  # Update this to your actual game scene path
