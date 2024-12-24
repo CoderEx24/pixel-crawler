@@ -38,6 +38,10 @@ offset_bottom = 535.0
 theme_override_constants/separation = 30
 alignment = 1
 
+[node name="Top" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
@@ -51,8 +55,9 @@ text = "Pixel Crawler"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Top" type="Control" parent="VBoxContainer"]
+[node name="Padding" type="Control" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="Knight" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
@@ -68,7 +73,7 @@ layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
-text = "Wizzard"
+text = "Wizard"
 
 [node name="Rogue" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
@@ -76,7 +81,8 @@ layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
-text = "Hero"
+text = "Rogue
+"
 
 [node name="Buttom" type="Control" parent="VBoxContainer"]
 layout_mode = 2
