@@ -32,12 +32,11 @@ func deal_damage(damage: int):
 	if health_points == 0:
 		set_state(EnemyState.DEAD)
 		return
-	$CollisionShape2D.disabled = true
-	$Stuned.start()
 
 func _ready():
 	$Sprite2D.play('idle')
 	$Weapon/AnimationPlayer.play('idle')
+	$Weapon.connect('player_hit', _on_player_hit)
 	
 func _process(_delta: float) -> void:
 	var mirror = sign(velocity.x) == -1
@@ -81,7 +80,6 @@ func _process(_delta: float) -> void:
 		$CollisionShape2D.disabled = true
 		$VisiblityRegion/CollisionShape2D.disabled = true
 		$AttackRegion/CollisionShape2D.disabled = true
-		$Stuned.stop()
 		$Wander.stop()
 		$Weapon.queue_free()
 		$Sprite2D.play('death')
@@ -89,7 +87,7 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta):
 	match state:
-		EnemyState.CHASE:
+		EnemyState.CHASE, EnemyState.ATTACK:
 			var target = player.global_position
 			var direction = (target - global_position).normalized() 
 			var desired_velocity =  direction * SPEED
@@ -106,6 +104,10 @@ func _physics_process(delta):
 			velocity += steering
 		EnemyState.DEAD, EnemyState.IDLE:
 			velocity = Vector2.ZERO
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
 
 	move_and_slide()
 
@@ -117,10 +119,6 @@ func _on_visiblity_region_body_entered(body: Node2D) -> void:
 func _on_visiblity_region_body_exited(body: Node2D) -> void:
 	if body.name == 'Hero' and state != EnemyState.DEAD:
 		set_state(EnemyState.IDLE)
-
-func _on_stuned_timeout() -> void:
-	$CollisionShape2D.disabled = false
-	$Stuned.stop()
 
 func _on_wander_timeout() -> void:
 	match state:
@@ -140,3 +138,6 @@ func _on_attack_region_body_entered(body: Node2D) -> void:
 func _on_attack_region_body_exited(body: Node2D) -> void:
 	if body.name == 'Hero':
 		set_state(EnemyState.CHASE)
+
+func _on_player_hit(player: CharacterBody2D, points: float):
+	player.recieve_damage(points)

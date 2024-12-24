@@ -3,6 +3,7 @@ extends CharacterBody2D
 signal entered_exit
 
 @export var SPEED: float = 300.0
+@export var health_points: float = 100.0
 var direction: Vector2i = Vector2i.ZERO
 var attack
 
@@ -36,16 +37,14 @@ func _physics_process(delta: float) -> void:
 		var collider = collision.get_collider()
 		
 		if collider is not TileMapLayer:
-			print('not a tile')
 			continue
 		
 		var tilemap = collider as TileMapLayer
 		var tilecoords = tilemap.local_to_map(collision_position)
 		var tile = tilemap.get_cell_tile_data(tilecoords)
 		if not tile:
-			print('not a tile: ', collision_position, ' -> ', tilecoords)
 			continue
-		print('a tile: ', collision_position, ' -> ', tilecoords)
+
 		var kind = tile.get_custom_data_by_layer_id(0)
 		if kind and kind == 'exit':
 			emit_signal('entered_exit')
@@ -64,3 +63,7 @@ func _process(delta):
 		$Weapon.attack($Weapon.MeleeAttackType.STRONG)
 	
 	$HeroSprite.play(animation)
+
+func recieve_damage(damage: float):
+	health_points = max(0, health_points - damage)
+	print('health points ', health_points)

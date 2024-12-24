@@ -102,6 +102,18 @@ tracks/0/keys = {
 "update": 0,
 "values": [Vector2(11, 12), Vector2(11, 10)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionArea:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_sv3f6"]
 resource_name = "strong"
@@ -176,3 +188,10 @@ libraries = {
 "": SubResource("AnimationLibrary_l2bii")
 }
 autoplay = "idle"
+
+[node name="Timeout" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="timeout" from="Timeout" to="." method="_on_timeout_timeout"]
