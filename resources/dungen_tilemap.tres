@@ -1,12 +1,6 @@
-[gd_resource type="TileSet" load_steps=5 format=3 uid="uid://bbcmveohwlxeu"]
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://bbcmveohwlxeu"]
 
 [ext_resource type="Texture2D" uid="uid://dhpwqmhsrbxdx" path="res://assets/Environment/Dungeon Prison/Assets/Tiles.png" id="1_vexs5"]
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_rksoi"]
-tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 1, 131072, 1, 2, 1, 65537, 0, 65537, 65537, 1, 131073, 65537, 2, 2, 131073, 0, 65538, 131073, 1, 131074, 131073, 2)
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_flhbe"]
-tile_data = PackedInt32Array(0, 262145, 0, 65536, 262145, 1, 131072, 262145, 2, 1, 327681, 0, 65537, 327681, 1, 131073, 327681, 2, 2, 393217, 0, 65538, 393217, 1, 131074, 393217, 2)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_if5ay"]
 resource_name = "Dungen"
@@ -326,10 +320,16 @@ texture = ExtResource("1_vexs5")
 6:21/0 = 0
 7:21/0 = 0
 8:21/0 = 0
-5:0/size_in_atlas = Vector2i(1, 4)
 5:0/0 = 0
-0:7/size_in_atlas = Vector2i(2, 3)
 0:7/0 = 0
+1:7/0 = 0
+0:8/0 = 0
+1:8/0 = 0
+0:9/0 = 0
+1:9/0 = 0
+5:1/0 = 0
+5:2/0 = 0
+5:3/0 = 0
 
 [resource]
 physics_layer_0/collision_layer = 64
@@ -339,5 +339,3 @@ physics_layer_1/collision_mask = 0
 custom_data_layer_0/name = "kind"
 custom_data_layer_0/type = 21
 sources/1 = SubResource("TileSetAtlasSource_if5ay")
-pattern_0 = SubResource("TileMapPattern_rksoi")
-pattern_1 = SubResource("TileMapPattern_flhbe")
