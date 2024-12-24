@@ -63,6 +63,8 @@ func _process(delta):
 		$Weapon.attack($Weapon.MeleeAttackType.STRONG)
 	
 	$HeroSprite.play(animation)
+	
+	%HealthBar.value = lerp(%HealthBar.value, health_points, 0.1)
 
 func recieve_damage(damage: float):
 	health_points = max(0, health_points - damage)
