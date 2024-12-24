@@ -1,9 +1,7 @@
 extends Node2D
 
-@onready var KnightHero = preload("res://scenes/core/knight.tscn")
-
 func _ready() -> void:
-	var hero: CharacterBody2D = KnightHero.instantiate()
+	var hero: CharacterBody2D = GlobalGameState.instantiate_hero()
 	hero.connect('entered_exit', _on_exit)
 	hero.global_position = Vector2i(24, 18) * 2
 	
