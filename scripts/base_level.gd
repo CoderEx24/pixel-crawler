@@ -1,7 +1,8 @@
 extends Node2D
 
 func _ready() -> void:
-	var hero: CharacterBody2D = GlobalGameState.instantiate_hero()
+	var hero: CharacterBody2D = GlobalGameState.instantiate_hero() if not EngineDebugger.is_active() \
+		else load('res://scenes/core/knight.tscn').instantiate()
 	hero.connect('entered_exit', _on_exit)
 	hero.global_position = Vector2i(24, 18) * 2
 	
