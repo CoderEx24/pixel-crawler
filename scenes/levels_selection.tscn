@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cx1la2magk2yy"]
 
-[ext_resource type="Script" path="res://scripts/levels_selection.gd" id="1_b4nlj"]
-[ext_resource type="Texture2D" uid="uid://qqhyrfydt520" path="res://assets/back.png" id="2_i1bu7"]
+[ext_resource type="Script" path="res://scripts/levels_selection.gd" id="1_8yc4v"]
+[ext_resource type="Texture2D" uid="uid://qqhyrfydt520" path="res://assets/back.png" id="2_w7lr1"]
 
 [sub_resource type="SystemFont" id="SystemFont_tyadq"]
 font_names = PackedStringArray("Impact")
@@ -18,7 +18,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_b4nlj")
+script = ExtResource("1_8yc4v")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -27,28 +27,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_i1bu7")
+texture = ExtResource("2_w7lr1")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_top = 12
-theme_override_constants/margin_right = 12
-theme_override_constants/margin_bottom = 12
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
-theme_override_constants/separation = 60
+offset_left = 386.0
+offset_top = 12.0
+offset_right = 765.0
+offset_bottom = 636.0
+theme_override_constants/separation = 30
+alignment = 1
 
-[node name="Seperator" type="Control" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Description" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Description" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -61,22 +51,11 @@ text = "Pixel Crawler"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+[node name="Top" type="Control" parent="VBoxContainer"]
 layout_mode = 2
-alignment = 1
+size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 30
-alignment = 1
-
-[node name="Seperator" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Seperator3" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Level1_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="L1" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 10
@@ -84,7 +63,7 @@ theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
 text = "Level1"
 
-[node name="Level2_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="L2" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 10
@@ -92,7 +71,7 @@ theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
 text = "Level2"
 
-[node name="Level3_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="L3" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 10
@@ -100,5 +79,10 @@ theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
 text = "Level3"
 
-[node name="Seperator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Buttom" type="Control" parent="VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+
+[connection signal="pressed" from="VBoxContainer/L1" to="." method="_on_level_selection" binds= [&"L1"]]
+[connection signal="pressed" from="VBoxContainer/L2" to="." method="_on_level_selection" binds= [&"L2"]]
+[connection signal="pressed" from="VBoxContainer/L3" to="." method="_on_level_selection" binds= [&"L3"]]
