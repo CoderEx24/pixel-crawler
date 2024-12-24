@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cp334bjbi8y6k"]
+[gd_scene load_steps=5 format=3 uid="uid://b164tp8i0ild7"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_hu32a"]
 [ext_resource type="Texture2D" uid="uid://qqhyrfydt520" path="res://assets/back.png" id="2_dlnu6"]
@@ -72,7 +72,7 @@ alignment = 1
 [node name="Seperator" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Start_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Startbutton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 10
@@ -80,10 +80,13 @@ theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
 text = "Start Game"
 
-[node name="Exit_button" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Exitbutton" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 50)
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
 text = "Exit"
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Startbutton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Exitbutton" to="." method="_on_exit_pressed"]
