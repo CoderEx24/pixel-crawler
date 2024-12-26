@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name Enemy
 
+signal enemy_killed
+
 enum EnemyState {
 	CHASE,
 	IDLE,
@@ -77,6 +79,7 @@ func _process(_delta: float) -> void:
 		
 	elif state == EnemyState.DEAD:
 		print('Enemy is fucking dead')
+		emit_signal('enemy_killed')
 		$CollisionShape2D.disabled = true
 		$VisiblityRegion/CollisionShape2D.disabled = true
 		$AttackRegion/CollisionShape2D.disabled = true

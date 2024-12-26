@@ -4,6 +4,7 @@ signal entered_exit
 
 @export var SPEED: float = 300.0
 @export var health_points: float = 100.0
+var score = 0
 var direction: Vector2i = Vector2i.ZERO
 var attack
 
@@ -65,6 +66,7 @@ func _process(delta):
 	$HeroSprite.play(animation)
 	
 	%HealthBar.value = lerp(%HealthBar.value, health_points, 0.1)
+	%Score.text = str(score)
 
 func recieve_damage(damage: float):
 	health_points = max(0, health_points - damage)

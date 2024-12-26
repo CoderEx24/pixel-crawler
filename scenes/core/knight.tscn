@@ -176,3 +176,13 @@ offset_right = 640.0
 offset_bottom = 98.0
 value = 100.0
 show_percentage = false
+
+[node name="Score" type="Label" parent="HUD"]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_bottom = 0.00771605
+offset_left = 1082.0
+offset_top = 65.0
+offset_right = 1122.0
+offset_bottom = 88.0
+metadata/_edit_use_anchors_ = true
