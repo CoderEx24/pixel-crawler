@@ -73,6 +73,13 @@ func recieve_damage(damage: float):
 	health_points = max(0, health_points - damage)
 	print('health points ', health_points)
 
+func change_weapon(weapon: String):
+	var new_weapon = load('res://scenes/core/%s.tscn' % weapon).instantiate()
+	$Weapon.queue_free()
+	$Weapon.name = 'deleted_weapon'
+	new_weapon.name = 'Weapon'
+	new_weapon.connect('tile_hit', _on_weapon_tile_hit)
+	add_child(new_weapon)
 
 func _on_weapon_tile_hit(type: String, coords: Vector2) -> void:
 	emit_signal('tile_hit', type, coords)

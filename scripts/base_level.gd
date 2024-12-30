@@ -1,6 +1,11 @@
 extends Node2D
 
 var hero: CharacterBody2D
+const WEAPONS = [
+	'wooden_sword',
+	'wooden_axe',
+]
+
 
 func _ready() -> void:
 	hero = GlobalGameState.instantiate_hero() if not EngineDebugger.is_active() \
@@ -8,6 +13,7 @@ func _ready() -> void:
 	hero.connect('entered_exit', _on_exit)
 	hero.global_position = Vector2i(24, 18) * 2
 	hero.connect('tile_hit', _on_tile_hit)
+	hero.name = 'Hero'
 	
 	for enemy in get_tree().get_nodes_in_group('Enemies'):
 		enemy.set_player(hero)
@@ -37,6 +43,9 @@ func _on_tile_hit(kind: String, coords: Vector2):
 
 func _on_collectable_collected(collectable: String):
 	print('collected ', collectable)
+	
+	if collectable in WEAPONS:
+		$Hero.change_weapon(collectable)
 
 func _on_enemy_died():
 	hero.score += 100
