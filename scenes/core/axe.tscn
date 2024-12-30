@@ -1,11 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://jco84sgy17pr"]
+[gd_scene load_steps=8 format=3 uid="uid://jco84sgy17pr"]
 
 [ext_resource type="Script" path="res://scripts/hero_melee_weapon.gd" id="1_jq2pu"]
-[ext_resource type="Texture2D" uid="uid://bw5dxy7mu2eas" path="res://assets/Weapons/Wood/Wood.png" id="2_s3xj2"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_qersi"]
-atlas = ExtResource("2_s3xj2")
-region = Rect2(48, 16, 16, 30)
+[ext_resource type="Texture2D" uid="uid://1txh8hytm475" path="res://resources/wooden_axe.tres" id="2_t5udu"]
 
 [sub_resource type="Animation" id="Animation_uqwv8"]
 length = 0.001
@@ -173,7 +169,7 @@ BASE_DAMAGE = 30
 
 [node name="WeaponSprite" type="Sprite2D" parent="."]
 position = Vector2(-2, -23)
-texture = SubResource("AtlasTexture_qersi")
+texture = ExtResource("2_t5udu")
 offset = Vector2(2, 9)
 metadata/_edit_lock_ = true
 
