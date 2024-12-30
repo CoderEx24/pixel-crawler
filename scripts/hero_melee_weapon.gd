@@ -42,6 +42,7 @@ func _physics_process(_delta: float) -> void:
 
 			var kind = tile.get_custom_data_by_layer_id(0)
 			emit_signal('tile_hit', kind, tilecoords)
+			$Timeout.start()
 		elif collider is CharacterBody2D:
 			if collider is Enemy and _state == MeleeWeaponState.ATTACKING:
 				var damage_multiplier = 1.2 if _kind == MeleeAttackType.STRONG else 1.0
