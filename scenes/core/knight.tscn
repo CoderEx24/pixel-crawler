@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cipknrohlunar" path="res://assets/Heroes/Knight/Death/Death-Sheet.png" id="1_j6aby"]
 [ext_resource type="Texture2D" uid="uid://bexex86ssiln0" path="res://assets/Heroes/Knight/Idle/Idle-Sheet.png" id="2_cyljw"]
 [ext_resource type="Texture2D" uid="uid://bfxpkk48kl7mm" path="res://assets/Heroes/Knight/Run/Run-Sheet.png" id="3_686cf"]
-[ext_resource type="PackedScene" uid="uid://dhpvyv7lxei7d" path="res://scenes/core/wooden_sword.tscn" id="5_rhlq4"]
+[ext_resource type="PackedScene" uid="uid://rocymwso8qde" path="res://scenes/core/wooden_sword.tscn" id="5_rhlq4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wnm3d"]
 size = Vector2(29, 31)
