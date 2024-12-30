@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 signal entered_exit
+signal tile_hit(kind: String, coords: Vector2)
 
 @export var SPEED: float = 300.0
 @export var health_points: float = 100.0
@@ -71,3 +72,7 @@ func _process(delta):
 func recieve_damage(damage: float):
 	health_points = max(0, health_points - damage)
 	print('health points ', health_points)
+
+
+func _on_weapon_tile_hit(type: String, coords: Vector2) -> void:
+	emit_signal('tile_hit', type, coords)

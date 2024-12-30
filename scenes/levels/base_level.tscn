@@ -14,9 +14,8 @@ tile_map_data = PackedByteArray("AAAAAAAAAQADAAQAAAAAAAEAAQADAAUAAAAAAAIAAQADAAU
 tile_set = ExtResource("1_5lst8")
 
 [node name="Props" type="TileMapLayer" parent="."]
-z_index = 1
 position = Vector2(2, 0)
-tile_map_data = PackedByteArray("AAAKAAgAAAABAAAAAAAKAAkAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAALAAkAAAAEAAwAAAALAAoAAAAEAA0AAAA=")
 tile_set = ExtResource("3_67cwv")
 
 [node name="Enemies" type="Node2D" parent="."]
