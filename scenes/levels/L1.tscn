@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://hxge5jxp2jn4"]
+[gd_scene load_steps=6 format=4 uid="uid://hxge5jxp2jn4"]
 
 [ext_resource type="Script" path="res://scripts/base_level.gd" id="1_pddr5"]
 [ext_resource type="TileSet" uid="uid://bbcmveohwlxeu" path="res://resources/dungen_tilemap.tres" id="2_k47xf"]
 [ext_resource type="PackedScene" uid="uid://cohxk3jj2tpsk" path="res://scenes/core/base_skeleton.tscn" id="3_aywxe"]
 [ext_resource type="TileSet" uid="uid://dem2wmjlb8jo" path="res://resources/dungen_props.tres" id="3_ijy2y"]
+[ext_resource type="PackedScene" uid="uid://c2lfu4lm6mdcg" path="res://scenes/core/orc_crew.tscn" id="5_wug8e"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_pddr5")
@@ -29,3 +30,6 @@ position = Vector2(600, 1322)
 
 [node name="4" parent="Enemies" groups=["Enemies"] instance=ExtResource("3_aywxe")]
 position = Vector2(1362, 1423)
+
+[node name="5" parent="Enemies" groups=["Enemies"] instance=ExtResource("5_wug8e")]
+position = Vector2(159, 435)
