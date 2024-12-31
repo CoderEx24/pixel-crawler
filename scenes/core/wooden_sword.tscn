@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://rocymwso8qde"]
 
 [ext_resource type="Script" path="res://scripts/hero_melee_weapon.gd" id="1_guh0w"]
-[ext_resource type="AnimationLibrary" uid="uid://b0odrkurs57mv" path="res://resources/wooden_sword_animations.tres" id="2_73380"]
+[ext_resource type="AnimationLibrary" uid="uid://buihr1xb2uqlh" path="res://resources/wooden_sword_animations.tres" id="2_73380"]
 [ext_resource type="Texture2D" uid="uid://bw5dxy7mu2eas" path="res://assets/Weapons/Wood/Wood.png" id="2_qh0sx"]
 [ext_resource type="AudioStream" uid="uid://cjipc322bm1fd" path="res://assets/sword-sound-260274.mp3" id="4_ivbur"]
 

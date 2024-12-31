@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://c2lfu4lm6mdcg"]
+[gd_scene load_steps=35 format=3 uid="uid://cb7xbmmid0yeq"]
 
 [ext_resource type="Script" path="res://scripts/enemy.gd" id="1_lw5ix"]
 [ext_resource type="Texture2D" uid="uid://dgh425u7my2dt" path="res://assets/Enemy/Orc Crew/Orc/Death/Death-Sheet.png" id="2_bqybr"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b6xj84qfw3akp" path="res://assets/Enemy/Orc Crew/Orc/Run/Run-Sheet.png" id="4_avy5y"]
 [ext_resource type="Script" path="res://scripts/enemy_melee_weapon.gd" id="5_ef5yk"]
 [ext_resource type="Texture2D" uid="uid://cn1dqm6u7bmu7" path="res://assets/Weapons/Bone/Bone.png" id="6_7rld3"]
+[ext_resource type="AudioStream" uid="uid://c17eskqkjcdw2" path="res://assets/male-death-sound-128357.mp3" id="7_q2vg0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_goce0"]
 size = Vector2(20.5, 30.5)
@@ -392,6 +393,9 @@ one_shot = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRegion"]
 shape = SubResource("CircleShape2D_s8eby")
+
+[node name="Kill" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_q2vg0")
 
 [connection signal="body_entered" from="VisiblityRegion" to="." method="_on_visiblity_region_body_entered"]
 [connection signal="body_exited" from="VisiblityRegion" to="." method="_on_visiblity_region_body_exited"]
