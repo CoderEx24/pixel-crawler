@@ -6,10 +6,8 @@ const WEAPONS = [
 	'wooden_axe',
 ]
 
-
 func _ready() -> void:
-	hero = GlobalGameState.instantiate_hero() if not EngineDebugger.is_active() \
-		else load('res://scenes/core/knight.tscn').instantiate()
+	hero = GlobalGameState.instantiate_hero() 
 	hero.connect('entered_exit', _on_exit)
 	hero.global_position = Vector2i(24, 18) * 2
 	hero.connect('tile_hit', _on_tile_hit)

@@ -14,7 +14,9 @@ func select_hero(h: String):
 	_selected_hero = hero
 
 func instantiate_hero():
-	assert(_selected_hero in ['knight', 'wizard', 'rogue'], 'Unknown hero type %s' % _selected_hero)
+	if _selected_hero not in ['knight', 'wizard', 'rogue']:
+		printerr('Unknown hero type %s' % _selected_hero)
+		return load('res://scenes/core/knight.tscn').instantiate()
 	return load('res://scenes/core/%s.tscn' % _selected_hero).instantiate()
 
 func selected_hero():
