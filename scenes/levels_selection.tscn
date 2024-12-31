@@ -71,18 +71,9 @@ theme_override_fonts/font = SubResource("SystemFont_x7u3j")
 theme_override_font_sizes/font_size = 30
 text = "Level2"
 
-[node name="L3" type="Button" parent="VBoxContainer"]
-custom_minimum_size = Vector2(120, 50)
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = SubResource("SystemFont_x7u3j")
-theme_override_font_sizes/font_size = 30
-text = "Level3"
-
 [node name="Buttom" type="Control" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="pressed" from="VBoxContainer/L1" to="." method="_on_level_selection" binds= [&"L1"]]
 [connection signal="pressed" from="VBoxContainer/L2" to="." method="_on_level_selection" binds= [&"L2"]]
-[connection signal="pressed" from="VBoxContainer/L3" to="." method="_on_level_selection" binds= [&"L3"]]
