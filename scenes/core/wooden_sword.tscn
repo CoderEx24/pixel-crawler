@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://rocymwso8qde"]
+[gd_scene load_steps=7 format=3 uid="uid://rocymwso8qde"]
 
 [ext_resource type="Script" path="res://scripts/hero_melee_weapon.gd" id="1_guh0w"]
 [ext_resource type="AnimationLibrary" uid="uid://buihr1xb2uqlh" path="res://resources/wooden_sword_animations.tres" id="2_73380"]
 [ext_resource type="Texture2D" uid="uid://bw5dxy7mu2eas" path="res://assets/Weapons/Wood/Wood.png" id="2_qh0sx"]
+[ext_resource type="AudioStream" uid="uid://cjipc322bm1fd" path="res://assets/sword-sound-260274.mp3" id="4_ivbur"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1wekx"]
 radius = 4.66667
@@ -41,5 +42,8 @@ offset = Vector2(0.445176, 0.595301)
 metadata/_edit_lock_ = true
 
 [node name="Timeout" type="Timer" parent="."]
+
+[node name="Attack" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ivbur")
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -86,6 +86,7 @@ func _process(_delta: float) -> void:
 		$Wander.stop()
 		$Weapon.queue_free()
 		$Sprite2D.play('death')
+		$Kill.play()
 		$Weapon/AnimationPlayer.stop()
 
 func _physics_process(delta):

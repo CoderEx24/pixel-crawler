@@ -69,6 +69,7 @@ func _process(delta: float) -> void:
 					$AnimationPlayer.play('base')
 				MeleeAttackType.STRONG:
 					$AnimationPlayer.play('strong')
+			$Attack.play()
 		MeleeWeaponState.TIMED_OUT:
 			$CollisionArea.disabled = true
 	
@@ -76,7 +77,7 @@ func _process(delta: float) -> void:
 func attack(kind: MeleeAttackType) -> void:
 	_kind = kind
 	set_state(MeleeWeaponState.ATTACKING)
-
+	
 func _on_timeout_timeout() -> void:
 	set_state(MeleeWeaponState.IDLE)
 	
