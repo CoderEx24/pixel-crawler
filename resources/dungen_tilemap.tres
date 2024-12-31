@@ -339,7 +339,7 @@ texture = ExtResource("1_vexs5")
 5:3/0 = 0
 
 [resource]
-physics_layer_0/collision_layer = 64
+physics_layer_0/collision_layer = 256
 physics_layer_0/collision_mask = 0
 physics_layer_1/collision_layer = 128
 physics_layer_1/collision_mask = 0
