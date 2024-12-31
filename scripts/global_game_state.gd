@@ -1,6 +1,8 @@
 extends Node
 
 var _selected_hero: String = ''
+var _current_level = 1
+const MAX_LEVEL_COUNT = 2
 
 func _ready():
 	pass
@@ -17,3 +19,10 @@ func instantiate_hero():
 
 func selected_hero():
 	return _selected_hero
+	
+func advance_to_next_level():
+	_current_level += 1
+	if _current_level > MAX_LEVEL_COUNT:
+		get_tree().quit()
+		
+	get_tree().change_scene_to_file('res://scenes/levels/L%d.tscn' % _current_level)

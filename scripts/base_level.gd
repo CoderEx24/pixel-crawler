@@ -51,4 +51,4 @@ func _on_enemy_died():
 	hero.score += 100
 	
 func _on_exit():
-	get_tree().quit()
+	GlobalGameState.advance_to_next_level()
