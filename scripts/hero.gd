@@ -14,7 +14,6 @@ func _ready():
 		load('res://resources/%s_animations.tres' % GlobalGameState.selected_hero())
 
 func _input(evt: InputEvent):
-	
 	if evt is InputEventKey:
 		var go_right = evt.is_action_pressed('ui_right') || (direction.x == 1 and not evt.is_action_released('ui_right'))
 		var go_left = evt.is_action_pressed('ui_left') || (direction.x == -1 and not evt.is_action_released('ui_left'))
@@ -76,6 +75,14 @@ func _process(delta):
 func recieve_damage(damage: float):
 	health_points = max(0, health_points - damage)
 	print('health points ', health_points)
+	
+	if health_points == 0:
+		$HeroSprite.play('death')
+		set_process(false)
+		set_physics_process(false)
+		set_process_input(false)
+		$Weapon.queue_free()
+		$CollisionShape2D.disabled = true
 
 func change_weapon(weapon: String):
 	var new_weapon = load('res://scenes/core/%s.tscn' % weapon).instantiate()
