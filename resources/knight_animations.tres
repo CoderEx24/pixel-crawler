@@ -1,79 +1,74 @@
-[gd_scene load_steps=24 format=3 uid="uid://csq0qqpilc14q"]
+[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://d0khn7amy4lwu"]
 
-[ext_resource type="Script" path="res://scripts/hero.gd" id="1_4r8be"]
-[ext_resource type="Texture2D" uid="uid://cipknrohlunar" path="res://assets/Heroes/Knight/Death/Death-Sheet.png" id="1_j6aby"]
-[ext_resource type="Texture2D" uid="uid://bexex86ssiln0" path="res://assets/Heroes/Knight/Idle/Idle-Sheet.png" id="2_cyljw"]
-[ext_resource type="Texture2D" uid="uid://bfxpkk48kl7mm" path="res://assets/Heroes/Knight/Run/Run-Sheet.png" id="3_686cf"]
-[ext_resource type="PackedScene" uid="uid://rocymwso8qde" path="res://scenes/core/wooden_sword.tscn" id="5_rhlq4"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnm3d"]
-size = Vector2(29, 31)
+[ext_resource type="Texture2D" uid="uid://cipknrohlunar" path="res://assets/Heroes/Knight/Death/Death-Sheet.png" id="1_hk4wm"]
+[ext_resource type="Texture2D" uid="uid://bexex86ssiln0" path="res://assets/Heroes/Knight/Idle/Idle-Sheet.png" id="2_cl4aq"]
+[ext_resource type="Texture2D" uid="uid://bfxpkk48kl7mm" path="res://assets/Heroes/Knight/Run/Run-Sheet.png" id="3_lbu1w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jywnj"]
-atlas = ExtResource("1_j6aby")
+atlas = ExtResource("1_hk4wm")
 region = Rect2(0, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7wxm"]
-atlas = ExtResource("1_j6aby")
+atlas = ExtResource("1_hk4wm")
 region = Rect2(48, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dw503"]
-atlas = ExtResource("1_j6aby")
+atlas = ExtResource("1_hk4wm")
 region = Rect2(96, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jffby"]
-atlas = ExtResource("1_j6aby")
+atlas = ExtResource("1_hk4wm")
 region = Rect2(144, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i6g3v"]
-atlas = ExtResource("1_j6aby")
+atlas = ExtResource("1_hk4wm")
 region = Rect2(192, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uhy6u"]
-atlas = ExtResource("1_j6aby")
+atlas = ExtResource("1_hk4wm")
 region = Rect2(240, 0, 48, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7atdx"]
-atlas = ExtResource("2_cyljw")
+atlas = ExtResource("2_cl4aq")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n5m4f"]
-atlas = ExtResource("2_cyljw")
+atlas = ExtResource("2_cl4aq")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7rqt2"]
-atlas = ExtResource("2_cyljw")
+atlas = ExtResource("2_cl4aq")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vmh3e"]
-atlas = ExtResource("2_cyljw")
+atlas = ExtResource("2_cl4aq")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5pxvp"]
-atlas = ExtResource("3_686cf")
+atlas = ExtResource("3_lbu1w")
 region = Rect2(0, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0tjtg"]
-atlas = ExtResource("3_686cf")
+atlas = ExtResource("3_lbu1w")
 region = Rect2(64, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gninx"]
-atlas = ExtResource("3_686cf")
+atlas = ExtResource("3_lbu1w")
 region = Rect2(128, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8c0t7"]
-atlas = ExtResource("3_686cf")
+atlas = ExtResource("3_lbu1w")
 region = Rect2(192, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rdh2h"]
-atlas = ExtResource("3_686cf")
+atlas = ExtResource("3_lbu1w")
 region = Rect2(256, 0, 64, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bda4k"]
-atlas = ExtResource("3_686cf")
+atlas = ExtResource("3_lbu1w")
 region = Rect2(320, 0, 64, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_st1cj"]
+[resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -138,53 +133,3 @@ animations = [{
 "name": &"run",
 "speed": 10.0
 }]
-
-[node name="Hero" type="CharacterBody2D"]
-collision_mask = 504
-motion_mode = 1
-platform_floor_layers = 4286578176
-script = ExtResource("1_4r8be")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_wnm3d")
-metadata/_edit_lock_ = true
-
-[node name="MainCamera" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
-limit_left = 0
-limit_top = 0
-position_smoothing_enabled = true
-position_smoothing_speed = 10.0
-metadata/_edit_lock_ = true
-
-[node name="HeroSprite" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_st1cj")
-animation = &"idle"
-autoplay = "idle"
-frame_progress = 0.727207
-
-[node name="Weapon" parent="." instance=ExtResource("5_rhlq4")]
-
-[node name="HUD" type="CanvasLayer" parent="."]
-layer = 2
-
-[node name="HealthBar" type="ProgressBar" parent="HUD"]
-unique_name_in_owner = true
-offset_left = 18.0
-offset_top = 41.0
-offset_right = 640.0
-offset_bottom = 98.0
-value = 100.0
-show_percentage = false
-
-[node name="Score" type="Label" parent="HUD"]
-unique_name_in_owner = true
-anchors_preset = -1
-anchor_bottom = 0.00771605
-offset_left = 1082.0
-offset_top = 65.0
-offset_right = 1122.0
-offset_bottom = 88.0
-metadata/_edit_use_anchors_ = true
-
-[connection signal="tile_hit" from="Weapon" to="." method="_on_weapon_tile_hit"]

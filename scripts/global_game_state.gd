@@ -1,6 +1,6 @@
 extends Node
 
-var _selected_hero: String = ''
+var _selected_hero: String = 'knight'
 var _current_level = 1
 const MAX_LEVEL_COUNT = 2
 
@@ -16,8 +16,8 @@ func select_hero(h: String):
 func instantiate_hero():
 	if _selected_hero not in ['knight', 'wizard', 'rogue']:
 		printerr('Unknown hero type %s' % _selected_hero)
-		return load('res://scenes/core/knight.tscn').instantiate()
-	return load('res://scenes/core/%s.tscn' % _selected_hero).instantiate()
+	
+	return load('res://scenes/core/hero.tscn').instantiate()
 
 func selected_hero():
 	return _selected_hero

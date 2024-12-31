@@ -9,6 +9,10 @@ var score = 0
 var direction: Vector2i = Vector2i.ZERO
 var attack
 
+func _ready():
+	$HeroSprite.sprite_frames = \
+		load('res://resources/%s_animations.tres' % GlobalGameState.selected_hero())
+
 func _input(evt: InputEvent):
 	
 	if evt is InputEventKey:

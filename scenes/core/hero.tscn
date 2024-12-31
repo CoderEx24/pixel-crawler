@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://csq0qqpilc14q"]
+
+[ext_resource type="Script" path="res://scripts/hero.gd" id="1_skuac"]
+[ext_resource type="SpriteFrames" uid="uid://d0khn7amy4lwu" path="res://resources/hero_animations.tres" id="2_nr70i"]
+[ext_resource type="PackedScene" uid="uid://rocymwso8qde" path="res://scenes/core/wooden_sword.tscn" id="3_r56pn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wnm3d"]
+size = Vector2(29, 31)
+
+[node name="Hero" type="CharacterBody2D"]
+collision_mask = 504
+motion_mode = 1
+platform_floor_layers = 4286578176
+script = ExtResource("1_skuac")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wnm3d")
+metadata/_edit_lock_ = true
+
+[node name="MainCamera" type="Camera2D" parent="."]
+zoom = Vector2(2.5, 2.5)
+limit_left = 0
+limit_top = 0
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+metadata/_edit_lock_ = true
+
+[node name="HeroSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_nr70i")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.727207
+
+[node name="Weapon" parent="." instance=ExtResource("3_r56pn")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+unique_name_in_owner = true
+offset_left = 18.0
+offset_top = 41.0
+offset_right = 640.0
+offset_bottom = 98.0
+value = 100.0
+show_percentage = false
+
+[node name="Score" type="Label" parent="HUD"]
+unique_name_in_owner = true
+anchors_preset = -1
+anchor_bottom = 0.00771605
+offset_left = 1082.0
+offset_top = 65.0
+offset_right = 1122.0
+offset_bottom = 88.0
+metadata/_edit_use_anchors_ = true
+
+[connection signal="tile_hit" from="Weapon" to="." method="_on_weapon_tile_hit"]
